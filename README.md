@@ -65,3 +65,4 @@ When enabled, the following cutting-edge features are available:
 ```bash
 export DEPLOY_ENV=production
 ./scripts/deploy.sh
+"## FAQ" 
