@@ -1,0 +1,28 @@
+* f03ee4c (HEAD -> main, tag: v1.1.0, tag: v1.0.0, origin/main, origin/HEAD) bad commit mixed
+* 9661e9e Revert "Bad commit"
+* 37d2665 Bad commit
+| * b40d0a3 (origin/feature/another-feature, feature/another-feature) feat: Add test feature
+|/  
+* 5eeb3a9 docs: Update README
+* 69069b0 cherry-pick again used
+* 1cc9c1d feat: Add new feature
+* 64c5ff7 docs: Add FAQ section
+| * 2a51018 (feature/new-feature) Used cherry-pick in cmd
+| * 775aa19 (origin/feature/new-feature) feat: Add new feature
+|/  
+| * bb4163b (refs/stash) On feature/new-feature: WIP: New feature development
+|/| 
+| * 1efa69c index on feature/new-feature: a011261 final merged commit
+|/  
+* a011261 final merged commit
+*   08b039c second time merged
+|\  
+| * d3dd9b2 (origin/conflict-simulator, instructor/conflict-simulator, conflict-simulator) updating conflict-simulator
+* |   6642145 all config's fixed with the dev branch
+|\ \  
+| * | 02011a5 (origin/dev, instructor/dev, dev) updating dev
+| |/  
+* | 0312c6f (instructor/main, instructor/HEAD) updating main
+* | fadfd24 Revise README for DevOps Simulator project
+|/  
+* ae630eb Initial commit
