@@ -66,3 +66,4 @@ When enabled, the following cutting-edge features are available:
 export DEPLOY_ENV=production
 ./scripts/deploy.sh
 "## FAQ" 
+"update" 
