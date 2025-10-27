@@ -1,22 +1,25 @@
 # DevOpsSimulator configuration
 # - Stable production settings are primary.
-# - Experimental features are preserved below (commented) and gated by feature_flags.experimental_enabled.
-# - Experimental features are NOT production-ready. Enable only in testing/staging environments.
+# - Experimental features are provided commented-out and behind a feature flag.
+# - Experimental features are NOT production-ready. Enable only in testing environments.
 
 application:
   name: DevOpsSimulator
   version: 1.0.0                # production version (primary)
   environment: production
-  # experimental_version: 3.0.0-experimental  # reference only
+  # NOTE: Experimental builds (e.g. "3.0.0-experimental") are available below
+  # but must be enabled explicitly via feature_flags.experimental_enabled.
 
 server:
   host: 0.0.0.0
   port: 8080
   ssl_enabled: true
+  # If you want to run development server locally, enable development.enabled below.
 
 logging:
   level: INFO
   format: json
+  # For experimental structured logging, see the commented/flagged block below.
 
 # Development configuration (disabled by default; enable with environment variable)
 development:
@@ -29,12 +32,17 @@ development:
 # Feature flags (use these to turn on non-production features safely)
 feature_flags:
   experimental_enabled: false   # set to true ONLY in testing or isolated environments
+  # When experimental_enabled = true, experimental.* settings below will be applied
+  # (ensure backward compatibility and perform necessary migration steps).
 
-# ---- Experimental configuration (kept separate and commented) ----
-# To apply experimental settings at runtime:
-#  - Option A: Set feature_flags.experimental_enabled: true in this file (only for testing)
-#  - Option B: Use your config loader to merge the commented "experimental" block when the flag is set
-# NOTE: The block below is intentionally commented out to avoid accidental activation in prod.
+# ---- Experimental configuration (kept separate) ----
+# The block below is intentionally preserved for reference.
+# It is NOT active unless:
+#  - you set feature_flags.experimental_enabled: true  OR
+#  - you uncomment and merge these values into the production blocks manually.
+#
+# Experimental features are not production-ready. Expect breaking changes and higher
+# resource requirements. Use in a dedicated testing environment only.
 
 # experimental:
 #   application:
@@ -84,12 +92,12 @@ feature_flags:
 #     encryption: AES-256
 #     audit_logging: comprehensive
 
-# ---- Notes & recommended usage ----
-# - Keep production 'logging.level' at INFO or higher in production to avoid excessive logs.
-# - When enabling experimental.database or distributed DB modes, ensure you have tested
-#   backups and schema migration paths.
-# - Implement your application config loader so, when feature_flags.experimental_enabled == true,
-#   it safely merges the experimental.* settings into runtime configuration (instead of uncommenting
-#   this file manually).
-# - For Kubernetes / Docker deployments, prefer toggling experimental flags via environment variables
-#   or separate secrets/configmaps per environment rather than editing this file in place.
+# ---- Compatibility & migration notes ----
+# - Keep production 'logging.level' at INFO or higher in prod to avoid excessive logs.
+# - If enabling experimental database/distributed mode, ensure backward-compatible schemas
+#   and backups are in place.
+# - Any experimental ai_features should be tested in staging; monitor resource usage.
+# - To promote an experimental config to production:
+#   1) Run thorough tests in a staging environment with feature_flags.experimental_enabled=true
+#   2) Migrate DB schemas with compatibility mode
+#   3) Increment application.version and update changelog
