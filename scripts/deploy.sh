@@ -159,4 +159,3 @@ esac
 echo "====================================="
 echo "Deployment completed successfully!"
 echo "====================================="
-"BUG" 
